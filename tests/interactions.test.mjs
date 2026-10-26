@@ -59,15 +59,15 @@ test('Exports V1, V2 et portfolio : saisies réelles et statut réservé',()=>{
   assert.match(s.run('review()'),/AUCUNE VALIDATION AUTOMATIQUE/);
 });
 
-test('Les affiches fournies sont préservées et associées aux slides 1, 2 et 4',()=>{
-  const originals=['Atelier LN-IA _ Fiche projet V1.png','Dossier professionnel — Module 03.png','Note de cadrage _ dossier professionnel IA.png'];
+test('Les affiches fournies sont préservées et associées aux slides 1, 2, 4 et 21',()=>{
+  const originals=['Atelier LN-IA _ Fiche projet V1.png','Dossier professionnel — Module 03.png','Note de cadrage _ dossier professionnel IA.png','Plan du Guide Pratique — Séance 11.png'];
   const s=session();
   data.posters.forEach((p,i)=>{
     assert.deepEqual(fs.readFileSync(new URL('../Affiches/'+originals[i],import.meta.url)),fs.readFileSync(new URL('../public/'+p.src.slice(2),import.meta.url)));
     assert.ok(p.alt&&p.caption);
     assert.ok(s.run('posterGallery()').includes(p.src));
   });
-  for(const [index,id] of [[0,'s10'],[1,'module03'],[3,'s09']]){
+  for(const [index,id] of [[0,'s10'],[1,'module03'],[3,'s09'],[20,'s11']]){
     s.run('slide='+index);assert.ok(s.run('slidePoster()').includes('data-poster="'+id+'"'));
   }
   s.run('slide=2');assert.equal(s.run('slidePoster()'),'');
