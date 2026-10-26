@@ -17,7 +17,7 @@ try {
  const run=async expression=>{const r=await call('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(JSON.stringify(r.exceptionDetails));return r.result.value;};
  const check=(value,label)=>{if(!value)throw Error(label);console.log('PASS '+label);};
  await call('Page.enable');
- await call('Page.navigate',{url:pathToFileURL(path.resolve('APERCU-AUTONOME-SEANCE-10.html')).href});
+ await call('Page.navigate',{url:process.argv[2] || pathToFileURL(path.resolve('APERCU-AUTONOME-SEANCE-10.html')).href});
  for(let i=0;i<60;i++){if(await run("!!document.querySelector('.poster-gallery')"))break;await new Promise(r=>setTimeout(r,100));}
  for(const width of [1440,390]){
  await call('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<500});
@@ -37,6 +37,16 @@ try {
  await run("document.querySelector('#slide-picker').value='20';document.querySelector('#slide-picker').dispatchEvent(new Event('change'))");
  const shot=await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});
  await writeFile('docs/verification-s11-slide-'+width+'.png',Buffer.from(shot.data,'base64'));
+ await run("document.querySelector('#slide-picker').value='3';document.querySelector('#slide-picker').dispatchEvent(new Event('change'))");
+ await run("new Promise(r=>{const i=document.querySelector('.slide-poster img');if(i.complete)r();else i.onload=r;})");
+ check(await run("document.querySelector('.slide-poster [data-poster=s09]') && document.querySelector('.slide-poster img').naturalWidth===1122 && document.querySelector('.slide-poster img').alt.includes('six')"),'slide 4 corrected S09 '+width);
+ check(await run("document.documentElement.scrollWidth<=innerWidth"),'slide 4 no overflow '+width);
+ const s09shot=await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});
+ await writeFile('docs/verification-s09-slide-'+width+'.png',Buffer.from(s09shot.data,'base64'));
+ await run("document.querySelector('.slide-poster [data-poster=s09]').click()");
+ await run("new Promise(r=>{const i=document.querySelector('#poster-large');if(i.complete)r();else i.onload=r;})");
+ check(await run("document.querySelector('#poster-dialog').open && document.querySelector('#poster-large').naturalWidth===1122"),'S09 modal '+width);
+ await run("document.querySelector('#close-poster').click()");
  await run("location.hash='ressources'");await new Promise(r=>setTimeout(r,150));
  check(await run("document.querySelector('.banner-next img').naturalWidth===1122 && getComputedStyle(document.querySelector('.banner-next img')).display!=='none'"),'resources image '+width);
  check(await run("document.documentElement.scrollWidth<=innerWidth"),'resources no overflow '+width);

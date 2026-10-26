@@ -99,8 +99,8 @@ Le dépôt de l'atelier est [atelier-seance-10-ln-ia](https://github.com/elhisse
 
 ## Pour le formateur
 
-Les quatre affiches fournies dans `Affiches/` sont intégrées à l'accueil (affiche S10 et galerie) et aux diapositives 1 (S10), 2 (Module 03) 4 (rappel S09) et 21 (préparation S11). Le bouton d'agrandissement ouvre une fenêtre refermable avec « Fermer » ou Échap. Les originaux PNG sont copiés sans modification dans `public/assets/` et embarqués dans l'aperçu autonome. L'affiche S09 est une synthèse visuelle ; le formulaire conserve les six rubriques de cadrage, dont l'objectif.
+Les quatre affiches fournies dans `Affiches/` sont intégrées à l'accueil (affiche S10 et galerie) et aux diapositives 1 (S10), 2 (Module 03), 4 (rappel S09) et 21 (préparation S11). Le bouton d'agrandissement ouvre une fenêtre refermable avec « Fermer » ou Échap. Les originaux PNG et JPEG sont copiés sans modification dans `public/assets/` et embarqués dans l'aperçu autonome. L’affiche S09 mise à jour présente les six éléments de la note de cadrage, dont l’objectif du document. L’ancienne affiche à cinq éléments est conservée pour l’historique ; la galerie et la diapositive 4 utilisent la nouvelle version.
 
-Audit local et réserves avant diffusion : [docs/AUDIT-2026-10-23.md](docs/AUDIT-2026-10-23.md). La chaîne `npm.cmd run verify` passe ; le contrôle navigateur des correctifs reste à réaliser. Les cases de relecture sont remises à zéro quand le projet change et ne sont pas conservées après rechargement : exporter la grille avant de quitter.
+Audit local et réserves avant diffusion : [docs/AUDIT-2026-10-23.md](docs/AUDIT-2026-10-23.md). La chaîne `npm.cmd run verify` passe ; les contrôles navigateur desktop/mobile sont documentés dans [le rapport de remplacement S09](docs/REMPLACEMENT-AFFICHE-S09.md). Les cases de relecture sont remises à zéro quand le projet change et ne sont pas conservées après rechargement : exporter la grille avant de quitter.
 
 Voir `docs/DEROULEMENT-FORMATEUR.md`, `docs/SYNOPSIS-22-SLIDES.md`, `docs/CONTROLES-QUALITE.md`.

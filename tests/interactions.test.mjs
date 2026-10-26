@@ -60,7 +60,7 @@ test('Exports V1, V2 et portfolio : saisies réelles et statut réservé',()=>{
 });
 
 test('Les affiches fournies sont préservées et associées aux slides 1, 2, 4 et 21',()=>{
-  const originals=['Atelier LN-IA _ Fiche projet V1.png','Dossier professionnel — Module 03.png','Note de cadrage _ dossier professionnel IA.png','Plan du Guide Pratique — Séance 11.png'];
+  const originals=['Atelier LN-IA _ Fiche projet V1.png','Dossier professionnel — Module 03.png','AFFICHE-seance-09-note de cadrage.jpeg','Plan du Guide Pratique — Séance 11.png'];
   const s=session();
   data.posters.forEach((p,i)=>{
     assert.deepEqual(fs.readFileSync(new URL('../Affiches/'+originals[i],import.meta.url)),fs.readFileSync(new URL('../public/'+p.src.slice(2),import.meta.url)));
