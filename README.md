@@ -13,14 +13,33 @@
 
 Double-cliquer sur `APERCU-AUTONOME-SEANCE-10.html`. La présentation et les activités sont autonomes et fonctionnent hors ligne dans un navigateur récent. Les liens vers les références externes nécessitent Internet.
 
-## Démarrer dans VS Code et Vite
+## Lancer le serveur local depuis ce README
+
+1. Ouvrir le dossier du projet dans VS Code, puis **Terminal → Nouveau terminal**.
+2. Copier et exécuter cette commande PowerShell :
+
+```powershell
+.\LANCER-VITE-WINDOWS.bat
+```
+
+Le lanceur installe les dépendances si nécessaire, démarre Vite et ouvre automatiquement le navigateur. Depuis l’Explorateur Windows, vous pouvez aussi double-cliquer sur [LANCER-VITE-WINDOWS.bat](LANCER-VITE-WINDOWS.bat). Un aperçu Markdown ou GitHub peut afficher ou télécharger ce fichier plutôt que l’exécuter : utilisez alors la commande ci-dessus dans votre copie locale.
+
+**Une fois le serveur démarré : [ouvrir l’atelier local](http://127.0.0.1:5173/).**
+
+Gardez le terminal du serveur ouvert pendant l’atelier. Pour arrêter : **Ctrl+C**. Après fermeture ou redémarrage de Windows, relancez le fichier BAT avant d’ouvrir l’adresse.
+
+### Si ERR_CONNECTION_REFUSED apparaît
+
+L’adresse locale répond uniquement quand Vite est démarré sur cet ordinateur. Relancez le fichier BAT et vérifiez le message `Local: http://127.0.0.1:5173/`. Si le port 5173 est occupé, le lanceur affiche une erreur au lieu de choisir silencieusement une autre adresse : vérifiez le programme qui utilise ce port. Node.js et npm doivent être installés ; le lanceur signale leur absence. L’installation initiale des dépendances nécessite Internet.
+
+Pour démarrer manuellement depuis la racine du projet :
 
 ```powershell
 npm.cmd install
-npm.cmd run dev
+npm.cmd run dev -- --open --strictPort
 ```
 
-Ouvrir l'adresse locale indiquée (par défaut `http://127.0.0.1:5173`). Si PowerShell n'interdit pas npm.ps1, `npm install` / `npm run dev` fonctionnent aussi.
+Sans serveur, [ouvrir l’aperçu autonome](APERCU-AUTONOME-SEANCE-10.html) depuis l’Explorateur Windows. Le [site publié](https://elhisse-clprepas.github.io/atelier-seance-10-ln-ia/) est également accessible.
 
 Contrôles :
 
@@ -80,7 +99,7 @@ Le dépôt de l'atelier est [atelier-seance-10-ln-ia](https://github.com/elhisse
 
 ## Pour le formateur
 
-Les trois affiches fournies dans `Affiches/` sont intégrées à l'accueil (affiche S10 et galerie) et aux diapositives 1 (S10), 2 (Module 03) et 4 (rappel S09). Le bouton d'agrandissement ouvre une fenêtre refermable avec « Fermer » ou Échap. Les originaux PNG sont copiés sans modification dans `public/assets/` et embarqués dans l'aperçu autonome. L'affiche S09 est une synthèse visuelle ; le formulaire conserve les six rubriques de cadrage, dont l'objectif.
+Les quatre affiches fournies dans `Affiches/` sont intégrées à l'accueil (affiche S10 et galerie) et aux diapositives 1 (S10), 2 (Module 03) 4 (rappel S09) et 21 (préparation S11). Le bouton d'agrandissement ouvre une fenêtre refermable avec « Fermer » ou Échap. Les originaux PNG sont copiés sans modification dans `public/assets/` et embarqués dans l'aperçu autonome. L'affiche S09 est une synthèse visuelle ; le formulaire conserve les six rubriques de cadrage, dont l'objectif.
 
 Audit local et réserves avant diffusion : [docs/AUDIT-2026-10-23.md](docs/AUDIT-2026-10-23.md). La chaîne `npm.cmd run verify` passe ; le contrôle navigateur des correctifs reste à réaliser. Les cases de relecture sont remises à zéro quand le projet change et ne sont pas conservées après rechargement : exporter la grille avant de quitter.
 
